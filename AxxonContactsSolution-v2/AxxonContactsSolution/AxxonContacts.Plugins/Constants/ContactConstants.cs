@@ -13,9 +13,9 @@ namespace AxxonContacts.Plugins.Constants
         // ── Custom Axxon ────────────────────────────────────────────
         public const string IsMaster = "axx_ismaster";
 
-        // ── OOB — relacion de jerarquia Master/Raw ───────────────────
-        public const string ParentContactId     = "parentcontactid";
-        public const string ParentContactIdName = "parentcontactidname";
+        // ── Custom Axxon — relacion de jerarquia Master/Raw ─────────
+        public const string MasterContactId     = "axx_mastercontactid";
+        public const string MasterContactIdName = "axx_mastercontactidname";
 
         // ── Datos de persona ─────────────────────────────────────────
         public const string FirstName  = "firstname";
@@ -60,7 +60,7 @@ namespace AxxonContacts.Plugins.Constants
         public const string ModifiedOn     = "modifiedon";
 
         // ── Campos que se propagan del Raw al Master ─────────────────
-        // Excluye: contactid, axx_ismaster, parentcontactid, modifiedby/on (audit)
+        // Excluye: contactid, axx_ismaster, axx_mastercontactid, modifiedby/on (audit)
         public static readonly IReadOnlyList<string> InheritedFields = new[]
         {
             FirstName, MiddleName, LastName, MobilePhone, Description,
@@ -77,7 +77,7 @@ namespace AxxonContacts.Plugins.Constants
         public static readonly string[] RequiredColumns = new[]
         {
             // Control
-            IsMaster, ParentContactId, ParentContactIdName,
+            IsMaster, MasterContactId, MasterContactIdName,
             // Persona
             FirstName, MiddleName, LastName, MobilePhone, Description,
             // F&O / Dual Write

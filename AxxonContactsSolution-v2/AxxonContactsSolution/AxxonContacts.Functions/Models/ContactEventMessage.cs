@@ -43,11 +43,11 @@ namespace AxxonContacts.Functions.Models
         [JsonPropertyName("isMaster")]
         public bool IsMaster { get; set; }
 
-        [JsonPropertyName("parentContactId")]
-        public Guid? ParentContactId { get; set; }
+        [JsonPropertyName("masterContactId")]
+        public Guid? MasterContactId { get; set; }
 
-        [JsonPropertyName("parentContactIdName")]
-        public string? ParentContactIdName { get; set; }
+        [JsonPropertyName("masterContactIdName")]
+        public string? MasterContactIdName { get; set; }
 
         // ── Dual Write / F&O ─────────────────────────────────────────
         [JsonPropertyName("msdynCompany")]

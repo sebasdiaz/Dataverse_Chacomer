@@ -27,9 +27,9 @@ namespace AxxonContacts.Plugins.Models
         public string Description { get; set; }
 
         // ── Control Master/Raw ───────────────────────────────────────
-        public bool   IsMaster           { get; set; }
-        public string ParentContactId    { get; set; }      // Guid
-        public string ParentContactIdName { get; set; }
+        public bool   IsMaster            { get; set; }
+        public string MasterContactId     { get; set; }      // Guid
+        public string MasterContactIdName { get; set; }
 
         // ── Dual Write / F&O ─────────────────────────────────────────
         public string MsdynCompany             { get; set; } // Guid — account

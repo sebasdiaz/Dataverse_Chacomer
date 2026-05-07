@@ -11,7 +11,7 @@ namespace AxxonContacts.Functions.Services
         // ── Nombres logicos de entidad y campos de control ───────────
         private const string EntityLogicalName      = "contact";
         private const string IsMaster               = "axx_ismaster";
-        private const string ParentContactId        = "parentcontactid";
+        private const string MasterContactId        = "axx_mastercontactid";
         private const string IdentificationNumber   = "msdyn_identificationnumber";
         private const int    BulkBatchSize          = 1000;
 
@@ -98,10 +98,12 @@ namespace AxxonContacts.Functions.Services
             {
                 return await Task.Run(() =>
                     _service.Retrieve(EntityLogicalName, contactId,
-                        new ColumnSet(IsMaster, ParentContactId)));
+                        new ColumnSet(IsMaster, MasterContactId)));
             }
-            catch (Exception ex) when (ex.Message.Contains("Does Not Exist"))
+            catch (Microsoft.Xrm.Sdk.FaultException<Microsoft.Xrm.Sdk.OrganizationServiceFault> ex)
+                when (ex.Detail?.ErrorCode == unchecked((int)0x80040217))
             {
+                // 0x80040217 = ObjectDoesNotExist — el contacto fue eliminado entre el evento y el procesamiento
                 return null;
             }
         }
@@ -221,7 +223,7 @@ namespace AxxonContacts.Functions.Services
             SetString(e, "description", m.Description);
 
             // Dual Write / F&O — Lookups
-            SetRef(e, "msdyn_company",          "account",                m.MsdynCompany);
+            SetRef(e, "msdyn_company",          "cdm_company",            m.MsdynCompany);
             SetRef(e, "msdyn_partyid",          "msdyn_party",            m.MsdynPartyId);        // VERIFICAR logical name
             SetRef(e, "msdyn_customergroupid",  "msdyn_customergroup",    m.MsdynCustomerGroupId);
             SetRef(e, "transactioncurrencyid",  "transactioncurrency",    m.TransactionCurrencyId);
@@ -269,7 +271,7 @@ namespace AxxonContacts.Functions.Services
 
         private async Task AssociateRawToMasterAsync(Entity rawContact, EntityReference masterRef)
         {
-            var current = rawContact.GetAttributeValue<EntityReference>(ParentContactId);
+            var current = rawContact.GetAttributeValue<EntityReference>(MasterContactId);
 
             if (current?.Id == masterRef.Id)
             {
@@ -280,7 +282,7 @@ namespace AxxonContacts.Functions.Services
             }
 
             var update = new Entity(EntityLogicalName, rawContact.Id);
-            update[ParentContactId] = masterRef;
+            update[MasterContactId] = masterRef;
             await Task.Run(() => _service.Update(update));
 
             _logger.LogInformation(
@@ -294,17 +296,20 @@ namespace AxxonContacts.Functions.Services
 
         private async Task BulkAssociateRawsToMasterAsync(string identificationNumber, EntityReference masterRef)
         {
+            // Los contactos de Dual Write llegan con axx_ismaster = null (campo no seteado).
+            // ConditionOperator.Equal, false no matchea nulos — usamos NotEqual, true + Null en OR.
+            var notMasterFilter = new FilterExpression(LogicalOperator.Or);
+            notMasterFilter.AddCondition(IsMaster, ConditionOperator.Equal, false);
+            notMasterFilter.AddCondition(IsMaster, ConditionOperator.Null);
+
+            var criteria = new FilterExpression(LogicalOperator.And);
+            criteria.AddCondition(IdentificationNumber, ConditionOperator.Equal, identificationNumber);
+            criteria.AddFilter(notMasterFilter);
+
             var query = new QueryExpression(EntityLogicalName)
             {
-                ColumnSet = new ColumnSet(ParentContactId),
-                Criteria = new FilterExpression(LogicalOperator.And)
-                {
-                    Conditions =
-                    {
-                        new ConditionExpression(IdentificationNumber, ConditionOperator.Equal, identificationNumber),
-                        new ConditionExpression(IsMaster, ConditionOperator.Equal, false)
-                    }
-                },
+                ColumnSet = new ColumnSet(MasterContactId),
+                Criteria = criteria,
                 PageInfo = new PagingInfo { PageNumber = 1, Count = BulkBatchSize }
             };
 
@@ -329,7 +334,7 @@ namespace AxxonContacts.Functions.Services
 
             foreach (var raw in raws)
             {
-                var current = raw.GetAttributeValue<EntityReference>(ParentContactId);
+                var current = raw.GetAttributeValue<EntityReference>(MasterContactId);
                 if (current?.Id == masterRef.Id) { skip++; continue; }
 
                 if (current != null)
@@ -341,7 +346,7 @@ namespace AxxonContacts.Functions.Services
                 }
 
                 var upd = new Entity(EntityLogicalName, raw.Id);
-                upd[ParentContactId] = masterRef;
+                upd[MasterContactId] = masterRef;
                 execMultiple.Requests.Add(new UpdateRequest { Target = upd });
             }
 
