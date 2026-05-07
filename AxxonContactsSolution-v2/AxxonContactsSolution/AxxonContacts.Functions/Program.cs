@@ -9,16 +9,11 @@ var host = new HostBuilder()
     .ConfigureFunctionsWorkerDefaults()
     .ConfigureServices((context, services) =>
     {
-        // Application Insights
-        services.AddApplicationInsightsTelemetryWorkerService();
-        services.ConfigureFunctionsApplicationInsights();
-
-        // Configuracion tipada
         var settings = new AppSettings
         {
-            DataverseUrl         = context.Configuration["DataverseUrl"] ?? string.Empty,
-            ServiceBusQueueName  = context.Configuration["ServiceBusQueueName"] ?? string.Empty,
-            DataverseClientId    = context.Configuration["DataverseClientId"],
+            DataverseUrl          = context.Configuration["DataverseUrl"] ?? string.Empty,
+            ServiceBusQueueName   = context.Configuration["ServiceBusQueueName"] ?? string.Empty,
+            DataverseClientId     = context.Configuration["DataverseClientId"],
             DataverseClientSecret = context.Configuration["DataverseClientSecret"]
         };
 
@@ -28,21 +23,18 @@ var host = new HostBuilder()
 
         services.AddSingleton(settings);
 
-        // DataverseClientFactory como Transient:
-        // Cada invocacion de la Function obtiene su propio ServiceClient.
-        // Con sessions activadas, maxConcurrentCallsPerSession = 1, asi que
-        // el paralelismo esta controlado por Service Bus. Un ServiceClient
-        // por invocacion es seguro y evita problemas de estado compartido.
+        // DataverseClientFactory Transient: cada invocacion obtiene su propio ServiceClient.
+        // Sessions de Service Bus garantizan maxConcurrentCallsPerSession=1 por cliente,
+        // por lo que un ServiceClient por invocacion es seguro sin estado compartido.
         services.AddTransient<DataverseClientFactory>();
         services.AddTransient<MasterMatchingService>(sp =>
         {
-            var factory = sp.GetRequiredService<DataverseClientFactory>();
+            var factory    = sp.GetRequiredService<DataverseClientFactory>();
             var orgService = factory.CreateOrganizationService();
-            var logger = sp.GetRequiredService<ILogger<MasterMatchingService>>();
+            var logger     = sp.GetRequiredService<ILogger<MasterMatchingService>>();
             return new MasterMatchingService(orgService, logger);
         });
 
-        // Logging
         services.AddLogging(b => b.AddConsole());
     })
     .Build();

@@ -39,6 +39,15 @@ namespace AxxonContacts.Functions.Models
         [JsonPropertyName("description")]
         public string? Description { get; set; }
 
+        [JsonPropertyName("emailAddress1")]
+        public string? EmailAddress1 { get; set; }
+
+        [JsonPropertyName("emailAddress2")]
+        public string? EmailAddress2 { get; set; }
+
+        [JsonPropertyName("msdynIsProspect")]
+        public bool? MsdynIsProspect { get; set; }
+
         // ── Control Master/Raw ───────────────────────────────────────
         [JsonPropertyName("isMaster")]
         public bool IsMaster { get; set; }
