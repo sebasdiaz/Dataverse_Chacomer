@@ -100,10 +100,9 @@ namespace AxxonContacts.Functions.Services
                     _service.Retrieve(EntityLogicalName, contactId,
                         new ColumnSet(IsMaster, MasterContactId)));
             }
-            catch (Microsoft.Xrm.Sdk.FaultException<Microsoft.Xrm.Sdk.OrganizationServiceFault> ex)
-                when (ex.Detail?.ErrorCode == unchecked((int)0x80040217))
+            catch (Exception ex) when (IsRecordNotFound(ex))
             {
-                // 0x80040217 = ObjectDoesNotExist — el contacto fue eliminado entre el evento y el procesamiento
+                // ObjectDoesNotExist (0x80040217) — el contacto fue eliminado entre el evento y el procesamiento
                 return null;
             }
         }
@@ -263,6 +262,20 @@ namespace AxxonContacts.Functions.Services
         {
             if (id.HasValue && id.Value != Guid.Empty)
                 e[field] = new EntityReference(logicalName, id.Value);
+        }
+
+        // Detecta ObjectDoesNotExist (0x80040217) sin depender de System.ServiceModel (WCF)
+        // que no esta disponible en el isolated worker model de .NET 8.
+        private static bool IsRecordNotFound(Exception ex)
+        {
+            for (var e = ex; e != null; e = e.InnerException)
+            {
+                if (e.Message.IndexOf("Does Not Exist", StringComparison.OrdinalIgnoreCase) >= 0)
+                    return true;
+                if (e.Message.Contains("0x80040217"))
+                    return true;
+            }
+            return false;
         }
 
         // ────────────────────────────────────────────────────────────

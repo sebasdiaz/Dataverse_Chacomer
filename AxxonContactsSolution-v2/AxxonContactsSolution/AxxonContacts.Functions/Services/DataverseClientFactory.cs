@@ -58,9 +58,16 @@ namespace AxxonContacts.Functions.Services
         {
             var credential = new DefaultAzureCredential();
 
+            // ServiceClient v1.1.9 no acepta TokenCredential directamente —
+            // usa un callback async que recibe el resource URI y devuelve el token.
             var client = new ServiceClient(
-                tokenCredential: credential,
-                instanceUrl: new Uri(_settings.DataverseUrl),
+                new Uri(_settings.DataverseUrl),
+                async (string resource) =>
+                {
+                    var tokenResult = await credential.GetTokenAsync(
+                        new Azure.Core.TokenRequestContext(new[] { resource + "/.default" }));
+                    return tokenResult.Token;
+                },
                 useUniqueInstance: true);
 
             ValidateConnection(client);
