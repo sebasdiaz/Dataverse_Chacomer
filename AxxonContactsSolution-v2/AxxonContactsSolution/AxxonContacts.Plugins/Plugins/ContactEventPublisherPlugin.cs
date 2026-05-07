@@ -40,7 +40,7 @@ namespace AxxonContacts.Plugins
     ///     Pre-Image (alias "PreImage"): todos los campos de RequiredColumns
     ///     Secure Configuration: {connectionString}|{queueName}
     ///
-    /// CRITICO: NO incluir parentcontactid en Filtering Attributes.
+    /// CRITICO: NO incluir axx_mastercontactid en Filtering Attributes.
     /// ================================================================
     /// </summary>
     public class ContactEventPublisherPlugin : IPlugin
@@ -137,8 +137,8 @@ namespace AxxonContacts.Plugins
 
                 // Control Master/Raw
                 IsMaster              = c.GetAttributeValue<bool>(ContactConstants.IsMaster),
-                ParentContactId       = GetRefId(c, ContactConstants.ParentContactId),
-                ParentContactIdName   = c.GetAttributeValue<string>(ContactConstants.ParentContactIdName),
+                MasterContactId       = GetRefId(c, ContactConstants.MasterContactId),
+                MasterContactIdName   = c.GetAttributeValue<string>(ContactConstants.MasterContactIdName),
 
                 // Dual Write / F&O
                 MsdynCompany             = GetRefId(c, ContactConstants.MsdynCompany),
@@ -230,8 +230,8 @@ namespace AxxonContacts.Plugins
             AppendString(sb, "mobilePhone",              m.MobilePhone);              sb.Append(',');
             AppendString(sb, "description",              m.Description);              sb.Append(',');
             AppendBool  (sb, "isMaster",                 m.IsMaster);                 sb.Append(',');
-            AppendString(sb, "parentContactId",          m.ParentContactId);          sb.Append(',');
-            AppendString(sb, "parentContactIdName",      m.ParentContactIdName);      sb.Append(',');
+            AppendString(sb, "masterContactId",          m.MasterContactId);          sb.Append(',');
+            AppendString(sb, "masterContactIdName",      m.MasterContactIdName);      sb.Append(',');
             AppendString(sb, "msdynCompany",             m.MsdynCompany);             sb.Append(',');
             AppendString(sb, "msdynCompanyName",         m.MsdynCompanyName);         sb.Append(',');
             AppendNullableBool(sb, "msdynSellable",      m.MsdynSellable);            sb.Append(',');
