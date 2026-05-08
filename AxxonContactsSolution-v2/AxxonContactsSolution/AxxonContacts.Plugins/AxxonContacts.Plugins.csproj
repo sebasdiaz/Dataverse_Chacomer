@@ -15,6 +15,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- System.Net.Http no se referencia automaticamente en net462 -->
+    <Reference Include="System.Net.Http" />
     <!-- Unico paquete requerido: SDK de Dataverse/CRM -->
     <PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="9.0.2.51" />
     <!--

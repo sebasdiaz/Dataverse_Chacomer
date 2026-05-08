@@ -18,11 +18,13 @@ namespace AxxonContacts.Plugins.Constants
         public const string MasterContactIdName = "axx_mastercontactidname";
 
         // ── Datos de persona ─────────────────────────────────────────
-        public const string FirstName  = "firstname";
-        public const string MiddleName = "middlename";
-        public const string LastName   = "lastname";
-        public const string MobilePhone = "mobilephone";
-        public const string Description = "description";
+        public const string FirstName     = "firstname";
+        public const string MiddleName    = "middlename";
+        public const string LastName      = "lastname";
+        public const string MobilePhone   = "mobilephone";
+        public const string Description   = "description";
+        public const string EmailAddress1 = "emailaddress1";
+        public const string EmailAddress2 = "emailaddress2";
 
         // ── Dual Write / Dataverse for F&O ───────────────────────────
         public const string MsdynCompany             = "msdyn_company";
@@ -33,6 +35,7 @@ namespace AxxonContacts.Plugins.Constants
         public const string MsdynCustomerGroupId     = "msdyn_customergroupid";
         public const string MsdynCustomerGroupIdName = "msdyn_customergroupidname";
         public const string MsdynIdentificationNumber = "msdyn_identificationnumber";
+        public const string MsdynIsProspect          = "msdyn_isprospect";
         public const string MsdynPartyCountry        = "msdyn_partycountry";
         public const string MsdynPartyStateProvince  = "msdyn_partystateprovince";
         public const string TransactionCurrencyId    = "transactioncurrencyid";
@@ -64,6 +67,7 @@ namespace AxxonContacts.Plugins.Constants
         public static readonly IReadOnlyList<string> InheritedFields = new[]
         {
             FirstName, MiddleName, LastName, MobilePhone, Description,
+            EmailAddress1, EmailAddress2, MsdynIsProspect,
             MsdynCompany, MsdynSellable, MsdynPartyId,
             MsdynCustomerGroupId, MsdynIdentificationNumber,
             MsdynPartyCountry, MsdynPartyStateProvince,
@@ -80,6 +84,7 @@ namespace AxxonContacts.Plugins.Constants
             IsMaster, MasterContactId, MasterContactIdName,
             // Persona
             FirstName, MiddleName, LastName, MobilePhone, Description,
+            EmailAddress1, EmailAddress2, MsdynIsProspect,
             // F&O / Dual Write
             MsdynCompany, MsdynCompanyName,
             MsdynSellable,

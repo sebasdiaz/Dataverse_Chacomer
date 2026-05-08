@@ -1,6 +1,7 @@
 using AxxonContacts.Functions.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Xrm.Sdk;
+using System.ServiceModel;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 
@@ -100,7 +101,7 @@ namespace AxxonContacts.Functions.Services
                     _service.Retrieve(EntityLogicalName, contactId,
                         new ColumnSet(IsMaster, MasterContactId)));
             }
-            catch (Microsoft.Xrm.Sdk.FaultException<Microsoft.Xrm.Sdk.OrganizationServiceFault> ex)
+            catch (FaultException<Microsoft.Xrm.Sdk.OrganizationServiceFault> ex)
                 when (ex.Detail?.ErrorCode == unchecked((int)0x80040217))
             {
                 // 0x80040217 = ObjectDoesNotExist — el contacto fue eliminado entre el evento y el procesamiento
@@ -216,11 +217,14 @@ namespace AxxonContacts.Functions.Services
                 : new Entity(EntityLogicalName, id);
 
             // Datos de persona
-            SetString(e, "firstname",   m.FirstName);
-            SetString(e, "middlename",  m.MiddleName);
-            SetString(e, "lastname",    m.LastName);
-            SetString(e, "mobilephone", m.MobilePhone);
-            SetString(e, "description", m.Description);
+            SetString(e, "firstname",      m.FirstName);
+            SetString(e, "middlename",     m.MiddleName);
+            SetString(e, "lastname",       m.LastName);
+            SetString(e, "mobilephone",    m.MobilePhone);
+            SetString(e, "description",    m.Description);
+            SetString(e, "emailaddress1",  m.EmailAddress1);
+            SetString(e, "emailaddress2",  m.EmailAddress2);
+            if (m.MsdynIsProspect.HasValue) e["msdyn_isprospect"] = m.MsdynIsProspect.Value;
 
             // Dual Write / F&O — Lookups
             SetRef(e, "msdyn_company",          "cdm_company",            m.MsdynCompany);

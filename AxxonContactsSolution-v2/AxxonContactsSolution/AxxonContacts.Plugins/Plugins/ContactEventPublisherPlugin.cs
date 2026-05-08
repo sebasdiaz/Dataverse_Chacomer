@@ -134,6 +134,11 @@ namespace AxxonContacts.Plugins
                 LastName              = c.GetAttributeValue<string>(ContactConstants.LastName),
                 MobilePhone           = c.GetAttributeValue<string>(ContactConstants.MobilePhone),
                 Description           = c.GetAttributeValue<string>(ContactConstants.Description),
+                EmailAddress1         = c.GetAttributeValue<string>(ContactConstants.EmailAddress1),
+                EmailAddress2         = c.GetAttributeValue<string>(ContactConstants.EmailAddress2),
+                MsdynIsProspect       = c.Contains(ContactConstants.MsdynIsProspect)
+                                          ? (bool?)c.GetAttributeValue<bool>(ContactConstants.MsdynIsProspect)
+                                          : null,
 
                 // Control Master/Raw
                 IsMaster              = c.GetAttributeValue<bool>(ContactConstants.IsMaster),
@@ -229,6 +234,9 @@ namespace AxxonContacts.Plugins
             AppendString(sb, "lastName",                 m.LastName);                 sb.Append(',');
             AppendString(sb, "mobilePhone",              m.MobilePhone);              sb.Append(',');
             AppendString(sb, "description",              m.Description);              sb.Append(',');
+            AppendString(sb, "emailAddress1",            m.EmailAddress1);            sb.Append(',');
+            AppendString(sb, "emailAddress2",            m.EmailAddress2);            sb.Append(',');
+            AppendNullableBool(sb, "msdynIsProspect",    m.MsdynIsProspect);          sb.Append(',');
             AppendBool  (sb, "isMaster",                 m.IsMaster);                 sb.Append(',');
             AppendString(sb, "masterContactId",          m.MasterContactId);          sb.Append(',');
             AppendString(sb, "masterContactIdName",      m.MasterContactIdName);      sb.Append(',');

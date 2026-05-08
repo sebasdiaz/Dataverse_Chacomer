@@ -2,7 +2,7 @@ using System.Text.Json;
 using AxxonContacts.Functions.Models;
 using AxxonContacts.Functions.Services;
 using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.ServiceBus;
+using Azure.Messaging.ServiceBus;
 using Microsoft.Extensions.Logging;
 
 namespace AxxonContacts.Functions.Functions

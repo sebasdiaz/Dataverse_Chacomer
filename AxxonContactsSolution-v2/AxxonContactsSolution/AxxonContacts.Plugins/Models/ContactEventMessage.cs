@@ -23,8 +23,11 @@ namespace AxxonContacts.Plugins.Models
         public string FirstName   { get; set; }
         public string MiddleName  { get; set; }
         public string LastName    { get; set; }
-        public string MobilePhone { get; set; }
-        public string Description { get; set; }
+        public string MobilePhone   { get; set; }
+        public string Description   { get; set; }
+        public string EmailAddress1 { get; set; }
+        public string EmailAddress2 { get; set; }
+        public bool?  MsdynIsProspect { get; set; }
 
         // ── Control Master/Raw ───────────────────────────────────────
         public bool   IsMaster            { get; set; }
