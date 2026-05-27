@@ -18,13 +18,15 @@ interface ContribuyenteResponse {
 }
 
 // ── Mapeo estado API → valor OptionSet axx_fiscalstate ───────────────────────
+// Normalizado a MAYÚSCULAS para comparación case-insensitive
+// (la API puede devolver "ACTIVO", "Activo" o "activo")
 
 const ESTADO_MAP: Record<string, number> = {
-    "Activo":      1,
-    "Suspendido":  2,
-    "Cancelado":   3,
-    "Bloqueado":   4,
-    "No Vigente":  5,
+    "ACTIVO":      1,
+    "SUSPENDIDO":  2,
+    "CANCELADO":   3,
+    "BLOQUEADO":   4,
+    "NO VIGENTE":  5,
 };
 
 // ── Nombres de campos en Dataverse ───────────────────────────────────────────
@@ -231,8 +233,8 @@ export class RucValidatorControl implements ComponentFramework.StandardControl<I
         // description = respuesta completa JSON
         this._setTextField(formContext, FIELD_DESCRIPTION, JSON.stringify(c, null, 2));
 
-        // axx_fiscalstate = MultiSelectPicklist — array de { value }
-        const estadoVal = ESTADO_MAP[c.estado];
+        // axx_fiscalstate = MultiSelectPicklist — lookup case-insensitive
+        const estadoVal = ESTADO_MAP[c.estado?.toUpperCase()];
         if (estadoVal !== undefined) {
             const attr = formContext.getAttribute(FIELD_FISCAL_STATE) as
                 Xrm.Attributes.MultiSelectOptionSetAttribute | null;
