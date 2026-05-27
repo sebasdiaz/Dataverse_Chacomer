@@ -1,0 +1,810 @@
+{
+    "BusinessUnitId": "49850167-8b1f-f111-8341-6045bdd424fb",
+    "CorrelationId": "7b854d7b-41f2-4f04-bab7-d27277b4e05b",
+    "Depth": 4,
+    "InitiatingUserAgent": "",
+    "InitiatingUserAzureActiveDirectoryObjectId": "e3a96d5d-8187-498c-88e7-4448cc8e57fa",
+    "InitiatingUserId": "1735c84e-7533-f111-88b4-002248351bb4",
+    "InputParameters": [
+        {
+            "key": "Target",
+            "value": {
+                "__type": "Entity:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+                "Attributes": [
+                    {
+                        "key": "modifiedby",
+                        "value": {
+                            "__type": "EntityReference:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+                            "Id": "1735c84e-7533-f111-88b4-002248351bb4",
+                            "KeyAttributes": [],
+                            "LogicalName": "systemuser",
+                            "Name": null,
+                            "RowVersion": null
+                        }
+                    },
+                    {
+                        "key": "firstname",
+                        "value": "Sebastian n"
+                    },
+                    {
+                        "key": "fullname",
+                        "value": "Sebastian n Diaz"
+                    },
+                    {
+                        "key": "modifiedon",
+                        "value": "\/Date(1778204049000)\/"
+                    },
+                    {
+                        "key": "msdyn_contactpersonid",
+                        "value": "400002"
+                    },
+                    {
+                        "key": "modifiedonbehalfby",
+                        "value": null
+                    },
+                    {
+                        "key": "yomifullname",
+                        "value": "Sebastian n Diaz"
+                    },
+                    {
+                        "key": "msdyn_partyid",
+                        "value": {
+                            "__type": "EntityReference:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+                            "Id": "e8bb8cb9-0848-f111-bec6-000d3a14002e",
+                            "KeyAttributes": [],
+                            "LogicalName": "msdyn_party",
+                            "Name": "120001904",
+                            "RowVersion": null
+                        }
+                    },
+                    {
+                        "key": "contactid",
+                        "value": "dfe352a1-0948-f111-bec7-7c1e5268f183"
+                    }
+                ],
+                "EntityState": null,
+                "FormattedValues": [],
+                "Id": "dfe352a1-0948-f111-bec7-7c1e5268f183",
+                "KeyAttributes": [],
+                "LogicalName": "contact",
+                "RelatedEntities": [],
+                "RowVersion": "105531913"
+            }
+        }
+    ],
+    "IsExecutingOffline": false,
+    "IsInTransaction": false,
+    "IsOfflinePlayback": false,
+    "IsolationMode": 1,
+    "MessageName": "Update",
+    "Mode": 1,
+    "OperationCreatedOn": "\/Date(1778204050000+0000)\/",
+    "OperationId": "11940afd-7d4a-f111-bec7-7c1e5268f183",
+    "OrganizationId": "5b067a68-8028-f111-a7e4-002248305110",
+    "OrganizationName": "unq5b067a688028f111a7e4002248305",
+    "OutputParameters": [],
+    "OwningExtension": {
+        "Id": "59cf4f85-6449-f111-bec7-0022482ffb47",
+        "KeyAttributes": [],
+        "LogicalName": "sdkmessageprocessingstep",
+        "Name": null,
+        "RowVersion": null
+    },
+    "ParentContext": {
+        "BusinessUnitId": "49850167-8b1f-f111-8341-6045bdd424fb",
+        "CorrelationId": "7b854d7b-41f2-4f04-bab7-d27277b4e05b",
+        "Depth": 4,
+        "InitiatingUserAgent": "",
+        "InitiatingUserAzureActiveDirectoryObjectId": "e3a96d5d-8187-498c-88e7-4448cc8e57fa",
+        "InitiatingUserId": "1735c84e-7533-f111-88b4-002248351bb4",
+        "InputParameters": [
+            {
+                "key": "Target",
+                "value": {
+                    "__type": "Entity:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+                    "Attributes": [
+                        {
+                            "key": "msdyn_contactpersonid",
+                            "value": "400002"
+                        },
+                        {
+                            "key": "msdyn_partyid",
+                            "value": {
+                                "__type": "EntityReference:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+                                "Id": "e8bb8cb9-0848-f111-bec6-000d3a14002e",
+                                "KeyAttributes": [],
+                                "LogicalName": "msdyn_party",
+                                "Name": null,
+                                "RowVersion": null
+                            }
+                        },
+                        {
+                            "key": "contactid",
+                            "value": "dfe352a1-0948-f111-bec7-7c1e5268f183"
+                        },
+                        {
+                            "key": "firstname",
+                            "value": "Sebastian n"
+                        }
+                    ],
+                    "EntityState": null,
+                    "FormattedValues": [],
+                    "Id": "dfe352a1-0948-f111-bec7-7c1e5268f183",
+                    "KeyAttributes": [],
+                    "LogicalName": "contact",
+                    "RelatedEntities": [],
+                    "RowVersion": "105531906"
+                }
+            },
+            {
+                "key": "FromSandbox",
+                "value": true
+            }
+        ],
+        "IsExecutingOffline": false,
+        "IsInTransaction": false,
+        "IsOfflinePlayback": false,
+        "IsolationMode": 1,
+        "MessageName": "Update",
+        "Mode": 1,
+        "OperationCreatedOn": "\/Date(1778204050000+0000)\/",
+        "OperationId": "11940afd-7d4a-f111-bec7-7c1e5268f183",
+        "OrganizationId": "5b067a68-8028-f111-a7e4-002248305110",
+        "OrganizationName": "unq5b067a688028f111a7e4002248305",
+        "OutputParameters": [],
+        "OwningExtension": {
+            "Id": "59cf4f85-6449-f111-bec7-0022482ffb47",
+            "KeyAttributes": [],
+            "LogicalName": "sdkmessageprocessingstep",
+            "Name": null,
+            "RowVersion": null
+        },
+        "ParentContext": {
+            "BusinessUnitId": "49850167-8b1f-f111-8341-6045bdd424fb",
+            "CorrelationId": "7b854d7b-41f2-4f04-bab7-d27277b4e05b",
+            "Depth": 4,
+            "InitiatingUserAgent": "",
+            "InitiatingUserAzureActiveDirectoryObjectId": "e3a96d5d-8187-498c-88e7-4448cc8e57fa",
+            "InitiatingUserId": "1735c84e-7533-f111-88b4-002248351bb4",
+            "InputParameters": [
+                {
+                    "key": "Target",
+                    "value": {
+                        "__type": "Entity:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+                        "Attributes": [
+                            {
+                                "key": "firstname",
+                                "value": "Sebastian n"
+                            },
+                            {
+                                "key": "contactid",
+                                "value": "dfe352a1-0948-f111-bec7-7c1e5268f183"
+                            },
+                            {
+                                "key": "fullname",
+                                "value": "Sebastian n Diaz"
+                            },
+                            {
+                                "key": "yomifullname",
+                                "value": "Sebastian n Diaz"
+                            },
+                            {
+                                "key": "modifiedon",
+                                "value": "\/Date(1778204041000)\/"
+                            },
+                            {
+                                "key": "modifiedby",
+                                "value": {
+                                    "__type": "EntityReference:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+                                    "Id": "1735c84e-7533-f111-88b4-002248351bb4",
+                                    "KeyAttributes": [],
+                                    "LogicalName": "systemuser",
+                                    "Name": null,
+                                    "RowVersion": null
+                                }
+                            },
+                            {
+                                "key": "modifiedonbehalfby",
+                                "value": null
+                            }
+                        ],
+                        "EntityState": null,
+                        "FormattedValues": [],
+                        "Id": "dfe352a1-0948-f111-bec7-7c1e5268f183",
+                        "KeyAttributes": [],
+                        "LogicalName": "contact",
+                        "RelatedEntities": [],
+                        "RowVersion": null
+                    }
+                }
+            ],
+            "IsExecutingOffline": false,
+            "IsInTransaction": false,
+            "IsOfflinePlayback": false,
+            "IsolationMode": 1,
+            "MessageName": "Update",
+            "Mode": 1,
+            "OperationCreatedOn": "\/Date(1778204050000+0000)\/",
+            "OperationId": "11940afd-7d4a-f111-bec7-7c1e5268f183",
+            "OrganizationId": "5b067a68-8028-f111-a7e4-002248305110",
+            "OrganizationName": "unq5b067a688028f111a7e4002248305",
+            "OutputParameters": [],
+            "OwningExtension": {
+                "Id": "59cf4f85-6449-f111-bec7-0022482ffb47",
+                "KeyAttributes": [],
+                "LogicalName": "sdkmessageprocessingstep",
+                "Name": null,
+                "RowVersion": null
+            },
+            "ParentContext": {
+                "BusinessUnitId": "49850167-8b1f-f111-8341-6045bdd424fb",
+                "CorrelationId": "7b854d7b-41f2-4f04-bab7-d27277b4e05b",
+                "Depth": 4,
+                "InitiatingUserAgent": "",
+                "InitiatingUserAzureActiveDirectoryObjectId": "e3a96d5d-8187-498c-88e7-4448cc8e57fa",
+                "InitiatingUserId": "1735c84e-7533-f111-88b4-002248351bb4",
+                "InputParameters": [
+                    {
+                        "key": "Target",
+                        "value": {
+                            "__type": "Entity:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+                            "Attributes": [
+                                {
+                                    "key": "firstname",
+                                    "value": "Sebastian n"
+                                },
+                                {
+                                    "key": "contactid",
+                                    "value": "dfe352a1-0948-f111-bec7-7c1e5268f183"
+                                }
+                            ],
+                            "EntityState": null,
+                            "FormattedValues": [],
+                            "Id": "dfe352a1-0948-f111-bec7-7c1e5268f183",
+                            "KeyAttributes": [],
+                            "LogicalName": "contact",
+                            "RelatedEntities": [],
+                            "RowVersion": null
+                        }
+                    },
+                    {
+                        "key": "x-ms-app-name",
+                        "value": "a365_AutomotiveSalesApp"
+                    },
+                    {
+                        "key": "SuppressDuplicateDetection",
+                        "value": true
+                    }
+                ],
+                "IsExecutingOffline": false,
+                "IsInTransaction": false,
+                "IsOfflinePlayback": false,
+                "IsolationMode": 1,
+                "MessageName": "Update",
+                "Mode": 1,
+                "OperationCreatedOn": "\/Date(1778204050000+0000)\/",
+                "OperationId": "11940afd-7d4a-f111-bec7-7c1e5268f183",
+                "OrganizationId": "5b067a68-8028-f111-a7e4-002248305110",
+                "OrganizationName": "unq5b067a688028f111a7e4002248305",
+                "OutputParameters": [],
+                "OwningExtension": {
+                    "Id": "59cf4f85-6449-f111-bec7-0022482ffb47",
+                    "KeyAttributes": [],
+                    "LogicalName": "sdkmessageprocessingstep",
+                    "Name": null,
+                    "RowVersion": null
+                },
+                "ParentContext": null,
+                "PostEntityImages": [],
+                "PreEntityImages": [],
+                "PrimaryEntityId": "dfe352a1-0948-f111-bec7-7c1e5268f183",
+                "PrimaryEntityName": "contact",
+                "RequestId": "950c5a17-df9e-4146-93ea-a6ff9a5c1f0c",
+                "SecondaryEntityName": "none",
+                "SharedVariables": [
+                    {
+                        "key": "IsAutoTransact",
+                        "value": true
+                    },
+                    {
+                        "key": "AcceptLang",
+                        "value": "es-AR,es;q=0.9"
+                    },
+                    {
+                        "key": "x-ms-app-name",
+                        "value": "a365_AutomotiveSalesApp"
+                    },
+                    {
+                        "key": "ChangedEntityTypes",
+                        "value": [
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "feedback",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "a365_booking",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "lead",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "opportunity",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "a365_segmentation",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "connection",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "socialactivity",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "msauto_serviceorder",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "postfollow",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "msauto_deviceinspection",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "msdyn_returnorder",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "incident",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "a365_serviceinvoiceprofile",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "msauto_fleet",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "a365_dealdeviceregistration",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "msauto_servicecontract",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "entitlement",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "msdyn_conversationparticipantinsights",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "msauto_serviceappointment",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "msauto_deal",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "a365_servicequotation",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "invoice",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "a365_serviceplan",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "msdyn_ocliveworkitem",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "msauto_tradein",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "msdyn_taggedrecord",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "a365_delivery",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "msauto_businessoperationcustomerpreference",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "msauto_customeridentifier",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "a365_inspection",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "quote",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "salesorder",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "a365_businessrelationship",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "contract",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "a365_rentalcontract",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "socialprofile",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "contact",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "fileattachment",
+                                "value": "Create"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "activitypointer",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "mailboxtrackingfolder",
+                                "value": "Update"
+                            },
+                            {
+                                "__type": "KeyValuePairOfstringstring:#System.Collections.Generic",
+                                "key": "activityparty",
+                                "value": "Update"
+                            }
+                        ]
+                    }
+                ],
+                "Stage": 30,
+                "UserAzureActiveDirectoryObjectId": "e3a96d5d-8187-498c-88e7-4448cc8e57fa",
+                "UserId": "1735c84e-7533-f111-88b4-002248351bb4"
+            },
+            "PostEntityImages": [],
+            "PreEntityImages": [],
+            "PrimaryEntityId": "dfe352a1-0948-f111-bec7-7c1e5268f183",
+            "PrimaryEntityName": "contact",
+            "RequestId": "950c5a17-df9e-4146-93ea-a6ff9a5c1f0c",
+            "SecondaryEntityName": "none",
+            "SharedVariables": [
+                {
+                    "key": "IsAutoTransact",
+                    "value": true
+                },
+                {
+                    "key": "AcceptLang",
+                    "value": "es-AR,es;q=0.9"
+                },
+                {
+                    "key": "x-ms-app-name",
+                    "value": "a365_AutomotiveSalesApp"
+                }
+            ],
+            "Stage": 40,
+            "UserAzureActiveDirectoryObjectId": "e3a96d5d-8187-498c-88e7-4448cc8e57fa",
+            "UserId": "1735c84e-7533-f111-88b4-002248351bb4"
+        },
+        "PostEntityImages": [],
+        "PreEntityImages": [],
+        "PrimaryEntityId": "dfe352a1-0948-f111-bec7-7c1e5268f183",
+        "PrimaryEntityName": "contact",
+        "RequestId": "950c5a17-df9e-4146-93ea-a6ff9a5c1f0c",
+        "SecondaryEntityName": "none",
+        "SharedVariables": [
+            {
+                "key": "IsAutoTransact",
+                "value": true
+            },
+            {
+                "key": "AcceptLang",
+                "value": ""
+            },
+            {
+                "key": "x-ms-app-name",
+                "value": "a365_AutomotiveSalesApp"
+            }
+        ],
+        "Stage": 30,
+        "UserAzureActiveDirectoryObjectId": "e3a96d5d-8187-498c-88e7-4448cc8e57fa",
+        "UserId": "1735c84e-7533-f111-88b4-002248351bb4"
+    },
+    "PostEntityImages": [
+        {
+            "key": "AsynchronousStepPrimaryName",
+            "value": {
+                "Attributes": [
+                    {
+                        "key": "fullname",
+                        "value": "Sebastian n Diaz"
+                    },
+                    {
+                        "key": "contactid",
+                        "value": "dfe352a1-0948-f111-bec7-7c1e5268f183"
+                    }
+                ],
+                "EntityState": null,
+                "FormattedValues": [],
+                "Id": "dfe352a1-0948-f111-bec7-7c1e5268f183",
+                "KeyAttributes": [],
+                "LogicalName": "contact",
+                "RelatedEntities": [],
+                "RowVersion": null
+            }
+        }
+    ],
+    "PreEntityImages": [
+        {
+            "key": "preImage",
+            "value": {
+                "Attributes": [
+                    {
+                        "key": "msdyn_company",
+                        "value": {
+                            "__type": "EntityReference:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+                            "Id": "4b487485-6089-414c-8107-45b8c8318fd6",
+                            "KeyAttributes": [],
+                            "LogicalName": "cdm_company",
+                            "Name": "DE51",
+                            "RowVersion": null
+                        }
+                    },
+                    {
+                        "key": "contactid",
+                        "value": "dfe352a1-0948-f111-bec7-7c1e5268f183"
+                    },
+                    {
+                        "key": "createdby",
+                        "value": {
+                            "__type": "EntityReference:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+                            "Id": "2e2d7f94-4422-f111-8342-000d3a17935a",
+                            "KeyAttributes": [],
+                            "LogicalName": "systemuser",
+                            "Name": "# Finance and Operations Runtime Integration User",
+                            "RowVersion": null
+                        }
+                    },
+                    {
+                        "key": "createdon",
+                        "value": "\/Date(1777934172000)\/"
+                    },
+                    {
+                        "key": "transactioncurrencyid",
+                        "value": {
+                            "__type": "EntityReference:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+                            "Id": "cff16f9c-3020-f111-8341-6045bdd424fb",
+                            "KeyAttributes": [],
+                            "LogicalName": "transactioncurrency",
+                            "Name": "US Dollar",
+                            "RowVersion": null
+                        }
+                    },
+                    {
+                        "key": "msdyn_customergroupid",
+                        "value": {
+                            "__type": "EntityReference:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+                            "Id": "8469a7ba-243f-f111-88b5-002248351bb4",
+                            "KeyAttributes": [],
+                            "LogicalName": "msdyn_customergroup",
+                            "Name": "100",
+                            "RowVersion": null
+                        }
+                    },
+                    {
+                        "key": "emailaddress1",
+                        "value": "lksebas@gmail.com"
+                    },
+                    {
+                        "key": "firstname",
+                        "value": "Sebastian n"
+                    },
+                    {
+                        "key": "fullname",
+                        "value": "Sebastian n Diaz"
+                    },
+                    {
+                        "key": "msdyn_identificationnumber",
+                        "value": "20230541281"
+                    },
+                    {
+                        "key": "msdyn_isprospect",
+                        "value": false
+                    },
+                    {
+                        "key": "lastname",
+                        "value": "Diaz"
+                    },
+                    {
+                        "key": "middlename",
+                        "value": "Emilioss"
+                    },
+                    {
+                        "key": "mobilephone",
+                        "value": "11-3387-6584"
+                    },
+                    {
+                        "key": "modifiedby",
+                        "value": {
+                            "__type": "EntityReference:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+                            "Id": "1735c84e-7533-f111-88b4-002248351bb4",
+                            "KeyAttributes": [],
+                            "LogicalName": "systemuser",
+                            "Name": "Sebastián Díaz",
+                            "RowVersion": null
+                        }
+                    },
+                    {
+                        "key": "modifiedon",
+                        "value": "\/Date(1778204048000)\/"
+                    },
+                    {
+                        "key": "msdyn_partyid",
+                        "value": {
+                            "__type": "EntityReference:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+                            "Id": "e8bb8cb9-0848-f111-bec6-000d3a14002e",
+                            "KeyAttributes": [],
+                            "LogicalName": "msdyn_party",
+                            "Name": "120001904",
+                            "RowVersion": null
+                        }
+                    },
+                    {
+                        "key": "statecode",
+                        "value": {
+                            "__type": "OptionSetValue:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+                            "Value": 0
+                        }
+                    },
+                    {
+                        "key": "statuscode",
+                        "value": {
+                            "__type": "OptionSetValue:http:\/\/schemas.microsoft.com\/xrm\/2011\/Contracts",
+                            "Value": 1
+                        }
+                    }
+                ],
+                "EntityState": null,
+                "FormattedValues": [
+                    {
+                        "key": "msdyn_company",
+                        "value": "DE51"
+                    },
+                    {
+                        "key": "createdby",
+                        "value": "# Finance and Operations Runtime Integration User"
+                    },
+                    {
+                        "key": "createdon",
+                        "value": "2026-05-04T19:36:12-03:00"
+                    },
+                    {
+                        "key": "transactioncurrencyid",
+                        "value": "US Dollar"
+                    },
+                    {
+                        "key": "msdyn_customergroupid",
+                        "value": "100"
+                    },
+                    {
+                        "key": "msdyn_isprospect",
+                        "value": "No"
+                    },
+                    {
+                        "key": "modifiedby",
+                        "value": "Sebastián Díaz"
+                    },
+                    {
+                        "key": "modifiedon",
+                        "value": "2026-05-07T22:34:08-03:00"
+                    },
+                    {
+                        "key": "msdyn_partyid",
+                        "value": "120001904"
+                    },
+                    {
+                        "key": "statecode",
+                        "value": "Active"
+                    },
+                    {
+                        "key": "statuscode",
+                        "value": "Active"
+                    }
+                ],
+                "Id": "dfe352a1-0948-f111-bec7-7c1e5268f183",
+                "KeyAttributes": [],
+                "LogicalName": "contact",
+                "RelatedEntities": [],
+                "RowVersion": null
+            }
+        }
+    ],
+    "PrimaryEntityId": "dfe352a1-0948-f111-bec7-7c1e5268f183",
+    "PrimaryEntityName": "contact",
+    "RequestId": "950c5a17-df9e-4146-93ea-a6ff9a5c1f0c",
+    "SecondaryEntityName": "none",
+    "SharedVariables": [
+        {
+            "key": "IsAutoTransact",
+            "value": true
+        },
+        {
+            "key": "AcceptLang",
+            "value": ""
+        },
+        {
+            "key": "x-ms-app-name",
+            "value": "a365_AutomotiveSalesApp"
+        }
+    ],
+    "Stage": 40,
+    "UserAzureActiveDirectoryObjectId": "e3a96d5d-8187-498c-88e7-4448cc8e57fa",
+    "UserId": "1735c84e-7533-f111-88b4-002248351bb4"
+}
