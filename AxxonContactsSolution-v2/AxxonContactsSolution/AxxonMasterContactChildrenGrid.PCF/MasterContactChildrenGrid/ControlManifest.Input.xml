@@ -20,7 +20,7 @@
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
     <!-- Placeholder required by PCF; actual record GUID is read from context.page.entityId at runtime -->
     <property name="masterContactId" display-name-key="MasterContactId_Display_Key" description-key="MasterContactId_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
-    <!--
+    
       Property node's of-type attribute can be of-type-group attribute.
       Example:
       <type-group name="numbers">
@@ -30,7 +30,7 @@
         <type>Decimal</type>
       </type-group>
       <property name="sampleProperty" display-name-key="Property_Display_Key" description-key="Property_Desc_Key" of-type-group="numbers" usage="bound" required="true" />
-    -->
+
     <resources>
       <code path="index.ts" order="1"/>
       <platform-library name="React" version="16.14.0" />
