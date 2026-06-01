@@ -73,6 +73,7 @@ namespace AxxonContacts.Functions.Services
 
                 var masterRef = existingMaster.ToEntityReference();
                 await AssociateRawToMasterAsync(currentContact, masterRef);
+                await BulkAssociateRawsToMasterAsync(message.MsdynIdentificationNumber!, masterRef);
                 await PropagateFieldsToMasterAsync(message, masterRef);
             }
             else
@@ -279,7 +280,7 @@ namespace AxxonContacts.Functions.Services
 
             if (current?.Id == masterRef.Id)
             {
-                _logger.LogDebug(
+                _logger.LogInformation(
                     "[MasterMatchingService] Raw {Id} ya asociado al Master {MasterId}. Skip.",
                     rawContact.Id, masterRef.Id);
                 return;
