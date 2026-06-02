@@ -4,12 +4,12 @@ import * as React from "react";
 
 const CONTACT_ENTITY = "contact";
 const SELECT_FIELDS = "contactid,fullname,_msdyn_company_value,_msdyn_customergroupid_value";
-const EXPAND_FIELDS = "msdyn_company($select=cdm_name),msdyn_customergroupid($select=msdyn_description)";
+const EXPAND_FIELDS = "msdyn_company($select=cdm_name,cdm_companycode),msdyn_customergroupid($select=msdyn_description)";
 
 interface IContactEntity {
     contactid: string;
     fullname: string;
-    msdyn_company?: { cdm_name?: string };
+    msdyn_company?: { cdm_name?: string; cdm_companycode?: string };
     msdyn_customergroupid?: { msdyn_description?: string };
 }
 
@@ -67,6 +67,7 @@ export class MasterContactChildrenGrid implements ComponentFramework.ReactContro
                 contactid: e.contactid,
                 fullname: e.fullname ?? "",
                 legalEntityName: e.msdyn_company?.cdm_name ?? "",
+                companyCode: e.msdyn_company?.cdm_companycode ?? "",
                 customerGroupName: e.msdyn_customergroupid?.msdyn_description ?? "",
             }));
             this.isLoading = false;

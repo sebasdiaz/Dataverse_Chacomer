@@ -19,6 +19,7 @@ export interface IChildContact {
     contactid: string;
     fullname: string;
     legalEntityName: string;
+    companyCode: string;
     customerGroupName: string;
 }
 
@@ -55,6 +56,11 @@ const columns: TableColumnDefinition<IChildContact>[] = [
         columnId: 'legalEntity',
         renderHeaderCell: () => 'Legal Entity',
         renderCell: (item) => item.legalEntityName || '—',
+    }),
+    createTableColumn<IChildContact>({
+        columnId: 'companyCode',
+        renderHeaderCell: () => 'Company Code',
+        renderCell: (item) => item.companyCode || '—',
     }),
     createTableColumn<IChildContact>({
         columnId: 'customerGroup',
