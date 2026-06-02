@@ -199,20 +199,43 @@ export class RucValidatorControl implements ComponentFramework.StandardControl<I
         const qs  = apiKey ? `?code=${encodeURIComponent(apiKey)}` : "";
         const url = `${base}/api/turuc/contribuyente/${encodeURIComponent(ruc)}${qs}`;
 
+        console.log("[RucValidator] Calling:", url);
+
         const response = await fetch(url, {
             method: "GET",
             headers: { "Accept": "application/json" },
         });
 
-        if (response.status === 404) return null;
+        console.log("[RucValidator] HTTP status:", response.status);
+
+        if (response.status === 404) {
+            console.log("[RucValidator] 404 → RUC no encontrado");
+            return null;
+        }
 
         if (!response.ok) {
             throw new Error(`HTTP ${response.status} al consultar la API de TURUC.`);
         }
 
-        const body: ContribuyenteResponse = await response.json();
+        const rawText = await response.text();
+        console.log("[RucValidator] Raw body:", rawText);
 
-        if (!body.data || body.message?.toUpperCase() !== "OK") return null;
+        let body: ContribuyenteResponse;
+        try {
+            body = JSON.parse(rawText) as ContribuyenteResponse;
+        } catch {
+            throw new Error(`Respuesta no es JSON válido: ${rawText.substring(0, 100)}`);
+        }
+
+        console.log("[RucValidator] data:", body.data, "message:", body.message);
+
+        // Acepta "OK" en cualquier casing y sin importar whitespace
+        const messageOk = body.message?.trim().toUpperCase() === "OK";
+
+        if (!body.data || !messageOk) {
+            console.log("[RucValidator] Validación fallida → data:", !!body.data, "messageOk:", messageOk);
+            return null;
+        }
 
         return body.data;
     }
@@ -243,6 +266,47 @@ export class RucValidatorControl implements ComponentFramework.StandardControl<I
                 attr.fireOnChange();
             }
         }
+
+        // Persona física: descomponer razonSocial en lastname, firstname, middlename
+        // Formato: "APELLIDO(S), NOMBRE SEGUNDO_NOMBRE"
+        // Ejemplo: "MIRANDA RUIZ DIAZ, JORGE SEBASTIAN"
+        //   → lastname="MIRANDA RUIZ DIAZ", firstname="JORGE", middlename="SEBASTIAN"
+        if (!c.esPersonaJuridica && !c.esEntidadPublica && c.razonSocial) {
+            const { lastname, firstname, middlename } = this._parseRazonSocial(c.razonSocial);
+            this._setTextField(formContext, "lastname",   lastname);
+            this._setTextField(formContext, "firstname",  firstname);
+            this._setTextField(formContext, "middlename", middlename);
+        }
+    }
+
+    // ── parser de razonSocial ────────────────────────────────────────────────
+
+    private _parseRazonSocial(razonSocial: string): {
+        lastname: string;
+        firstname: string;
+        middlename: string;
+    } {
+        // Separar por la primera coma: "APELLIDOS, NOMBRES"
+        const commaIndex = razonSocial.indexOf(",");
+
+        if (commaIndex === -1) {
+            // Sin coma: todo va a lastname
+            return { lastname: razonSocial.trim(), firstname: "", middlename: "" };
+        }
+
+        const lastname = razonSocial.substring(0, commaIndex).trim();
+        const nombres  = razonSocial.substring(commaIndex + 1).trim();
+
+        // Primer token = firstname, el resto = middlename
+        const spaceIndex = nombres.indexOf(" ");
+        if (spaceIndex === -1) {
+            return { lastname, firstname: nombres, middlename: "" };
+        }
+
+        const firstname  = nombres.substring(0, spaceIndex).trim();
+        const middlename = nombres.substring(spaceIndex + 1).trim();
+
+        return { lastname, firstname, middlename };
     }
 
     private _setTextField(
