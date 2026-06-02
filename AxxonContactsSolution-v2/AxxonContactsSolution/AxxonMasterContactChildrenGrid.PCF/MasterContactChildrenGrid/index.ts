@@ -63,6 +63,8 @@ export class MasterContactChildrenGrid implements ComponentFramework.ReactContro
 
         try {
             const result = await this.context.webAPI.retrieveMultipleRecords(CONTACT_ENTITY, options);
+            // DEBUG: log raw entities to browser console (remove after confirming field names)
+            console.log("[MasterContactChildrenGrid] raw entities:", JSON.stringify(result.entities[0] ?? {}));
             this.contacts = (result.entities as unknown as IContactEntity[]).map((e) => ({
                 contactid: e.contactid,
                 fullname: e.fullname ?? "",
