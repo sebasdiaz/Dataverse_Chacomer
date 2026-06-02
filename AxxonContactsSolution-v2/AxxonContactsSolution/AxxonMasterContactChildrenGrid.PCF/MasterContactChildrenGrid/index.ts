@@ -3,14 +3,44 @@ import { ChildContactsGrid, IChildContact } from "./ChildContactsGrid";
 import * as React from "react";
 
 const CONTACT_ENTITY = "contact";
-const SELECT_FIELDS = "contactid,fullname,_msdyn_company_value,_msdyn_customergroupid_value";
-const EXPAND_FIELDS = "msdyn_company($select=cdm_name,cdm_companycode),msdyn_customergroupid($select=msdyn_description)";
 
+/**
+ * Builds the FetchXML query for child contacts of a given master contact.
+ * Joins:
+ *   contact.msdyn_company       → cdm_company.cdm_companyid      (alias: Company)
+ *   contact.msdyn_customergroupid → msdyn_customergroup.msdyn_customergroupid (alias: CustomerGroup)
+ *   contact.msdyn_paymentterms  → msdyn_paymentterm.msdyn_paymenttermid      (alias: PaymentTerms)
+ */
+function buildFetchXml(masterContactId: string): string {
+    return `<fetch top="50">
+  <entity name="contact">
+    <attribute name="contactid" />
+    <attribute name="fullname" />
+    <filter>
+      <condition attribute="axx_mastercontactid" operator="eq" value="${masterContactId}" />
+    </filter>
+    <link-entity name="cdm_company" from="cdm_companyid" to="msdyn_company" link-type="inner" alias="Company">
+      <attribute name="cdm_name" />
+      <attribute name="cdm_companycode" />
+    </link-entity>
+    <link-entity name="msdyn_customergroup" from="msdyn_customergroupid" to="msdyn_customergroupid" link-type="outer" alias="CustomerGroup">
+      <attribute name="msdyn_description" />
+    </link-entity>
+    <link-entity name="msdyn_paymentterm" from="msdyn_paymenttermid" to="msdyn_paymentterms" link-type="outer" alias="PaymentTerms">
+      <attribute name="msdyn_description" />
+    </link-entity>
+  </entity>
+</fetch>`;
+}
+
+// FetchXML aliased columns are returned as "Alias.fieldname" keys
 interface IContactEntity {
     contactid: string;
     fullname: string;
-    msdyn_company?: { cdm_name?: string; cdm_companycode?: string };
-    msdyn_customergroupid?: { msdyn_description?: string };
+    "Company.cdm_name"?: string;
+    "Company.cdm_companycode"?: string;
+    "CustomerGroup.msdyn_description"?: string;
+    "PaymentTerms.msdyn_description"?: string;
 }
 
 export class MasterContactChildrenGrid implements ComponentFramework.ReactControl<IInputs, IOutputs> {
@@ -59,18 +89,18 @@ export class MasterContactChildrenGrid implements ComponentFramework.ReactContro
         this.errorMessage = null;
         this.notifyOutputChanged();
 
-        const options = `?$select=${SELECT_FIELDS}&$expand=${EXPAND_FIELDS}&$filter=_axx_mastercontactid_value eq '${masterContactId}'`;
+        const fetchXml = buildFetchXml(masterContactId);
+        const options = `?fetchXml=${encodeURIComponent(fetchXml)}`;
 
         try {
             const result = await this.context.webAPI.retrieveMultipleRecords(CONTACT_ENTITY, options);
-            // DEBUG: log raw entities to browser console (remove after confirming field names)
-            console.log("[MasterContactChildrenGrid] raw entities:", JSON.stringify(result.entities[0] ?? {}));
             this.contacts = (result.entities as unknown as IContactEntity[]).map((e) => ({
                 contactid: e.contactid,
                 fullname: e.fullname ?? "",
-                legalEntityName: e.msdyn_company?.cdm_name ?? "",
-                companyCode: e.msdyn_company?.cdm_companycode ?? "",
-                customerGroupName: e.msdyn_customergroupid?.msdyn_description ?? "",
+                legalEntityName: e["Company.cdm_name"] ?? "",
+                companyCode: e["Company.cdm_companycode"] ?? "",
+                customerGroupName: e["CustomerGroup.msdyn_description"] ?? "",
+                paymentTerms: e["PaymentTerms.msdyn_description"] ?? "",
             }));
             this.isLoading = false;
             this.notifyOutputChanged();

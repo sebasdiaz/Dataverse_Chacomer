@@ -21,6 +21,7 @@ export interface IChildContact {
     legalEntityName: string;
     companyCode: string;
     customerGroupName: string;
+    paymentTerms: string;
 }
 
 export interface IChildContactsGridProps {
@@ -66,6 +67,11 @@ const columns: TableColumnDefinition<IChildContact>[] = [
         columnId: 'customerGroup',
         renderHeaderCell: () => 'Customer Group',
         renderCell: (item) => item.customerGroupName || '—',
+    }),
+    createTableColumn<IChildContact>({
+        columnId: 'paymentTerms',
+        renderHeaderCell: () => 'Payment Terms',
+        renderCell: (item) => item.paymentTerms || '—',
     }),
 ];
 
